@@ -1,8 +1,6 @@
-import { Dimensions, Platform, ToastAndroid, Keyboard, Alert, DeviceEventEmitter, BackHandler } from 'react-native'; //DeviceEventEmitter, PermissionsAndroid, Alert, Vibration, BackHandler,
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { BackHandler } from 'react-native';
+import { action, makeObservable, observable } from 'mobx';
 import getPhoto from '../Services/GetPhotoService';
-// import {colors} from '../Styles/Styles';
-const platform = Platform.OS;
 class Store {
     /** index of currently visible image*/
     index: number = 0;

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { Text, View, StyleSheet, StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+import React from 'react';
+import { StyleSheet, StatusBar } from 'react-native';
+import { createStackNavigator} from '@react-navigation/stack';
 import {colors} from '../Styles/Styles';
 import {observer, inject} from 'mobx-react';
 import IconButton  from '../Shared/Buttons/IconButton';
@@ -27,7 +26,6 @@ export const NavStack: React.FC<Props> = inject('store')(observer((props: Props)
             <>
                 <Stack.Navigator initialRouteName="Home" screenOptions={{
                     headerTitleAlign: 'center',
-                    // ...TransitionPresets.SlideFromRightIOS,
                     headerStatusBarHeight: StatusBar.currentHeight
                     }}
                     screenListeners={{
@@ -53,18 +51,12 @@ export const NavStack: React.FC<Props> = inject('store')(observer((props: Props)
 
 const styles = StyleSheet.create({
     defaultHeader: {
-        // position: 'absolute',
         backgroundColor: 'transparent',
-        // zIndex: 100,
-        // top: 0,
-        // left: 0,
     },
     backBtn: {
         width: 40, 
         height: 40, 
-        borderRadius: 20, 
-        // backgroundColor: colors.light, 
-        // padding: 10,
+        borderRadius: 20,
         marginLeft: 10,
         borderColor: colors.light,
         borderWidth: 0.5,
@@ -75,8 +67,7 @@ const styles = StyleSheet.create({
         width: 40, 
         height: 40, 
         borderRadius: 20, 
-        backgroundColor: colors.light, 
-        // padding: 10,
+        backgroundColor: colors.light,
         marginLeft: 10,
         borderColor: colors.light,
         borderWidth: 0.5,
@@ -86,9 +77,7 @@ const styles = StyleSheet.create({
     backBtnDark: {
         width: 40, 
         height: 40, 
-        borderRadius: 20, 
-        // backgroundColor: colors.light, 
-        // padding: 10,
+        borderRadius: 20,
         marginLeft: 10,
         borderColor: colors.dark,
         borderWidth: 0.5,

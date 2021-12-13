@@ -1,9 +1,8 @@
 import React, {useEffect, useRef} from 'react';
-import { View, StatusBar, StyleSheet, FlatList, ActivityIndicator, Alert} from 'react-native';
+import { View, StatusBar, StyleSheet, Alert} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import {colors} from '../Styles/Styles';
 import IconButton  from '../Shared/Buttons/IconButton';
-// import getPhoto from '../Services/GetPhotoService';
 import GridSetting from '../GridSetting/GridSetting';
 import { observer, inject } from "mobx-react";
 import * as ScreenOrientation from 'expo-screen-orientation';
@@ -34,16 +33,10 @@ const Home: React.FC<Props> = inject('store')(observer((props: Props) => {
 
     useEffect(() => {
         const unsubscribe = props.navigation.addListener('focus', () => {
-            console.log(flatListRef)
           // do something
-        //   if(flatListRef && flatListRef?.scrollToIndex) {
-            // flatListRef.scrollToIndex({ index: props.store.index, animated: true });
         //   }
         if (props.store.imageList.length > 0 ) {
-            // Alert.alert(String(props.store.imageList.length));
-            // Alert.alert(String(props.store.index));
-            // props.store.imageList.length >= props.store.index + 2 ?
-            // flatListRef.scrollToIndex({ index: props.store.index, animated: true }) :
+            // scroll to last index user viewed in fullscreen
             flatListRef.scrollToIndex({ index: props.store.index, animated: true }) 
         }
         });

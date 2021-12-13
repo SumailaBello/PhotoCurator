@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import {SubTitle, DefaultText} from '../Shared/Typography/Typography'
 
 const About = () => {
@@ -12,7 +12,3 @@ const About = () => {
 }
 
 export default About;
-
-const styles = StyleSheet.create({
-
-})

@@ -1,5 +1,4 @@
 import {StyleSheet, StatusBar, Dimensions} from 'react-native';
-// import { color } from 'react-native-reanimated';
 export const screenHeight = Dimensions.get("window").height;
 export const screenWidth = Dimensions.get("window").width;
 
@@ -27,6 +26,8 @@ const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight * 2 : StatusBar.currentHeight,
+        // height: screenHeight,
+        // width: screenWidth,
     },
     content: {
         padding: 10,
@@ -45,15 +46,13 @@ const globalStyles = StyleSheet.create({
         flexDirection: 'row',
         marginVertical: 10
     },
-    badge: {
-        backgroundColor: 'rgba(189, 213, 227, 0.72);',
-        height: 'auto',
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
-    },
     primaryBtn: {
         backgroundColor: colors.primary,
+        borderRadius: 10,
+        color: colors.light,
+    },
+    dangerBtn: {
+        backgroundColor: colors.danger,
         borderRadius: 10,
         color: colors.light,
     },
@@ -66,12 +65,6 @@ const globalStyles = StyleSheet.create({
         backgroundColor: colors.warning,
         borderRadius: 10,
         color: colors.light,
-    },
-    warningFadeBtn: {
-        backgroundColor: colors.warning,
-        borderRadius: 10,
-        color: colors.light,
-        opacity: 0.5,
     },
     iconBtn: {
         width: 40,
@@ -89,24 +82,11 @@ const globalStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    dangerFadeBtn: {
-        backgroundColor: colors.danger,
-        borderRadius: 10,
-        color: colors.light,
-        opacity: 0.5,
-    },
-    dangerBtn: {
-        backgroundColor: colors.danger,
-        borderRadius: 10,
-        color: colors.light,
-    },
-    formStyle: {
-        margin: 10,
-    },
     btnText: {
+        fontFamily: 'Montserrat-SemiBold',
         fontStyle: 'normal',
         // fontWeight: '600',
-        fontSize: 10,
+        fontSize: 16,
     },
     fullWidth: {
         width: '100%',
@@ -125,23 +105,10 @@ const globalStyles = StyleSheet.create({
         borderRadius: 10,
         // color: colors.light,
     },
-    disabledBtn: {
-        backgroundColor: colors.primary,
-        borderRadius: 10,
-        opacity: 0.5,
-    },
     text: {
+        fontFamily: 'Montserrat-Regular',
         fontStyle: 'normal',
         fontSize: 16,
-    },
-    textMedium: {
-        fontWeight: '500',
-        fontStyle: 'normal',
-    },
-    textLarge: {
-        // fontWeight: 'bold',
-        fontStyle: 'normal',
-        fontSize: 25,
     },
     textPrimary: {
         color: colors.primary,
@@ -152,60 +119,6 @@ const globalStyles = StyleSheet.create({
     textWarning: {
         color: colors.warning,
         // fontFamily:
-    },
-    imagePlaceHolder: {
-        backgroundColor: colors.iconColor,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    marginTop: {
-        marginTop: 10,
-    },
-    thumbnail: {
-        height: 100,
-        width: 100,
-        borderRadius: 50,
-    },
-    thumbnailSmall: {
-        height: 50,
-        width: 50,
-        borderRadius: 25,
-    },
-    defaultCardStyle: {
-        paddingLeft: 4,
-        borderRadius: 10,
-        borderColor: '#B6B3BA',
-        borderStyle: 'solid',
-        borderWidth: 0.5,
-        height: 70,
-        width: '100%',
-        marginTop: 20,
-        flexDirection: 'row',
-        elevation: 0.7,
-    },
-    defaultItemStyle: {
-        paddingLeft: 4,
-        borderRadius: 10,
-        borderColor: '#B6B3BA',
-        borderStyle: 'solid',
-        height: 70,
-        borderWidth: 1,
-    },
-    defaultItemLabelStyle: {
-        color: '#B6B3BA',
-        marginLeft: 6,
-        fontSize: 15,
-        // marginTop: -12,
-    },
-    tabStyle: {
-        backgroundColor: colors.primary,
-    },
-    activeStyle: {
-        backgroundColor: colors.primary,
-    },
-    tabText: {
-        color: colors.light,
-        opacity: 0.5,
     },
 });
 

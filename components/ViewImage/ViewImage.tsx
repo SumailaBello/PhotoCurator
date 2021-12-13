@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, StatusBar, Modal} from 'react-native';
 import ImageView from "react-native-image-viewing";
 import {observer, inject} from 'mobx-react';
 
@@ -24,20 +23,15 @@ const ViewImage: React.FC<Props> = inject('store')(observer((props: Props) => {
         })
     }, [])
     return (
-        // <View style = {{flex: 1}}>
-        //     <StatusBar translucent={true} backgroundColor="transparent" />
-            <ImageView
-                images = {imageList}
-                imageIndex={props.route.params.index}
-                visible={visible}
-                onRequestClose={() => {setIsVisible(false); props.navigation.pop()}}
-                onImageIndexChange = {(index: number)=> props.store.setIndex(index)}
-                keyExtractor = {(item: any) => item.key}
-            />
-        // {/* </View> */}
+        <ImageView
+            images = {imageList}
+            imageIndex={props.route.params.index}
+            visible={visible}
+            onRequestClose={() => {setIsVisible(false); props.navigation.pop()}}
+            onImageIndexChange = {(index: number)=> props.store.setIndex(index)}
+            keyExtractor = {(item: any) => item.key}
+        />
     )
 }))
 
 export default ViewImage;
-
-const styles = StyleSheet.create({})

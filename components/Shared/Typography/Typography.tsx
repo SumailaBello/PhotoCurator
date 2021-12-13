@@ -8,6 +8,7 @@ interface textProps {
     style?: Object,
     /**Number of lines the text can break into */
     lines?: number,
+    /**text color */
     color?: string,
     /**texts are centered by default e.g auto, left, right, center, justify*/
     textAlign?: any,

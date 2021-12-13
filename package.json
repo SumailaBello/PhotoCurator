@@ -24,7 +24,6 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
-    "react-native-big-list": "^1.4.3",
     "react-native-flash-message": "^0.2.0",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-image-viewing": "^0.2.1",
