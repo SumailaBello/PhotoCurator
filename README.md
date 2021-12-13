@@ -5,7 +5,7 @@ A photo gallery application powered by unsplash
 Ensure you have node.js LTS installed
 Run <npm install --global expo-cli>
 
-Clone the repository and run <yarn install> to install all dependencies.
-
+Clone the repository 
+Run <yarn install> to install all dependencies.
 Run <yarn android> or <yarn ios> to start the application.
 
