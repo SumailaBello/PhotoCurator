@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import {SubTitle, DefaultText} from '../Shared/Typography/Typography'
 
 const About = () => {
     return (
-        <View>
-            <Text></Text>
+        <View style = {{flex: 1, justifyContent: 'center'}}>
+            <SubTitle title="Photo Curator" />
+            <DefaultText title = "Version 1.0" />
         </View>
     )
 }
@@ -12,5 +14,5 @@ const About = () => {
 export default About;
 
 const styles = StyleSheet.create({
-    
+
 })

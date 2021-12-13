@@ -106,7 +106,7 @@ const globalStyles = StyleSheet.create({
     btnText: {
         fontStyle: 'normal',
         // fontWeight: '600',
-        fontSize: 16,
+        fontSize: 10,
     },
     fullWidth: {
         width: '100%',

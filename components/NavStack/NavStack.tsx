@@ -7,6 +7,7 @@ import {observer, inject} from 'mobx-react';
 import IconButton  from '../Shared/Buttons/IconButton';
 import Home from '../Home/Home';
 import About from '../About/About';
+import ViewImage from '../ViewImage/ViewImage';
 import { Feather } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
@@ -33,25 +34,16 @@ export const NavStack: React.FC<Props> = inject('store')(observer((props: Props)
                         state: onStateChanged,
                     }}
                 >
-                        <Stack.Screen name="Home" component={Home}
-                        options={({ navigation }) => ({
-                            // title: '',
-                            // headerTransparent: true,
-                        })} 
-                        />
+                        <Stack.Screen name="Home" component={Home} />
+                        <Stack.Screen name="ViewImage" component={ViewImage} options = {{
+                            header: ()=> null
+                        }} />
                         <Stack.Screen name="About" component={About} 
                         options={({navigation}: any) => ({
                             headerLeft: ()=> (
-                                <IconButton icon={<Feather name = "chevron-left" color={colors.light} />} style={styles.backBtn} 
+                                <IconButton icon={<Feather name = "chevron-left" size = {17} color={colors.medium} />} style={styles.backBtn} 
                                 onPress={()=> {navigation.goBack()}} />
-                            ),
-                            headerStyle: {
-                                backgroundColor: colors.primary,
-                            },
-                            headerTitleStyle: {
-                                color: colors.light,
-                            },
-                            headerTitleAlign: 'center'
+                            )
                         })} 
                         />
                 </Stack.Navigator>

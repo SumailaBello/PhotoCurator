@@ -9,8 +9,8 @@ interface ItemProps {
 const ImageItem: React.FC<ItemProps> = (props: ItemProps) => {
     return (
         <Fragment key={props.item.toString()}>
-                <Image
-                style={{margin: 10}}
+            <Image
+                style={{margin: 10, width: 50, height: 50}}
                 source={{
                 uri: props.item.item.urls.thumb,
                 }}
@@ -22,4 +22,4 @@ const ImageItem: React.FC<ItemProps> = (props: ItemProps) => {
 
 export default ImageItem;
 
-const styles = StyleSheet.create({})
+// const styles = StyleSheet.create({})

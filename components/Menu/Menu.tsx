@@ -1,26 +1,24 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions, Platform, StatusBar, Image, BackHandler } from 'react-native';
-import { SmallText } from '../Shared/Typography/Typography';
+import React from 'react';
+import { View, StyleSheet, Dimensions, Platform, StatusBar } from 'react-native';
 import {observer, inject} from 'mobx-react';
 import {colors} from '../Styles/Styles';
 import { Item } from '../Shared/Menu/MenuItem';
 import { Feather } from '@expo/vector-icons';
 
 const ScreenHeight = Dimensions.get('window').height;
-// const ScreenWidth = Dimensions.get('window').width;
 const platform = Platform.OS;
 let height = 17 / 100 * ScreenHeight;
 
 interface Props {
-    navigation: any,
-    store?: any,
+    navigation: any;
+    store?: any;
 }
 
 export const Menu: React.FC<Props> = inject('store')(observer((props: Props)=> {
-
+    console.log(props.navigation);
     // handles navigation on sidemenu
-    const nav = (route: string, props?: any)=> {
+    const nav = (route: string)=> {
         props.navigation.navigate(route);
         props.navigation.closeDrawer();
     };
@@ -29,7 +27,7 @@ export const Menu: React.FC<Props> = inject('store')(observer((props: Props)=> {
             <View style={styles.container}>
                 <View style = {[styles.menuHeader, {flex: 2}]} >
                     {/* <Image source = {require('../../assets/img/logo.png')} style={{width: '100%', height: '90%', resizeMode: 'contain'}} /> */}
-                    <Feather name = "box" size = {50} color={colors.primary} />
+                    <Feather name = "aperture" size = {50} color={colors.medium} />
                 </View>
                 <View style = {[styles.subContainer, {flex: 10}]}>
                     <View style={{marginBottom: 25}}>

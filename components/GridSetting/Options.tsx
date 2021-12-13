@@ -5,12 +5,14 @@ import {DefaultText, SmallText} from '../Shared/Typography/Typography';
 import Button from '../Shared/Buttons/Button';
 import globalStyles, { colors } from '../Styles/Styles';
 import { Feather } from '@expo/vector-icons';
+import { observer, inject } from "mobx-react";
 
 interface Props {
     visible: boolean;
     setModalVisible: (state: boolean)=> void;
+    store?: any;
 }
-const Options: React.FC<Props> = (props: Props) => {
+const Options: React.FC<Props> = inject('store')(observer((props: Props) => {
 
     return (
         <Modal
@@ -26,19 +28,37 @@ const Options: React.FC<Props> = (props: Props) => {
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <SmallText title = "Options" />
-                    <TouchableOpacity onPress = {()=> props.setModalVisible(false)} style = {{padding: 10, flexDirection: 'row', width: '100%'}}>
+                    <TouchableOpacity 
+                        onPress = {()=> { 
+                                props.store.setNumColumns(2)
+                                props.setModalVisible(false)
+                            }
+                        } 
+                        style = {{padding: 10, flexDirection: 'row', width: '100%'}}>
                         <View style = {{justifyContent: 'center', marginRight: 5}}>
                             <Feather name="circle" />
                         </View>
                         <DefaultText title = "X2" />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress = {()=> props.setModalVisible(false)} style = {{padding: 10, flexDirection: 'row', width: '100%'}}>
+                    <TouchableOpacity 
+                            onPress = {()=> { 
+                                props.store.setNumColumns(3)
+                                props.setModalVisible(false)
+                            }
+                        } 
+                        style = {{padding: 10, flexDirection: 'row', width: '100%'}}>
                         <View style = {{justifyContent: 'center', marginRight: 5}}>
                             <Feather name="circle" />
                         </View>
                         <DefaultText title = "X3" />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress = {()=> props.setModalVisible(false)} style = {{padding: 10, flexDirection: 'row', width: '100%'}}>
+                    <TouchableOpacity 
+                            onPress = {()=> { 
+                                props.store.setNumColumns(4)
+                                props.setModalVisible(false)
+                            }
+                        }  
+                        style = {{padding: 10, flexDirection: 'row', width: '100%'}}>
                         <View style = {{justifyContent: 'center', marginRight: 5}}>
                             <Feather name="circle" />
                         </View>
@@ -51,7 +71,7 @@ const Options: React.FC<Props> = (props: Props) => {
             </View>
         </Modal>
     )
-}
+}))
 
 export default Options;
 
