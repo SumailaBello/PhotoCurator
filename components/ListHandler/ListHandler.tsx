@@ -32,6 +32,7 @@ const ListHandler: React.FC<Props> = inject('store')(observer((props: Props) => 
     }, [])
 
     return (
+        <>
         <FlatList
             ref={ref => flatListRef = ref}
             data = {props.store.imageList.slice()}
@@ -61,8 +62,9 @@ const ListHandler: React.FC<Props> = inject('store')(observer((props: Props) => 
                 keyExtractor={(item: any) => item.id} showsVerticalScrollIndicator={false}
                 numColumns = {props.store.numColumns} 
                 refreshControl = {
-                    <RefreshControl colors = {[colors.primary, colors.medium]} refreshing = {props.store.imageList.length === 0 ? true : false} onRefresh = {()=> props.store.loadPhotos()} />}  columnWrapperStyle = {{width: '110%'}}
+                    <RefreshControl colors = {[colors.primary, colors.medium]} refreshing = {props.store.imageList.length === 0 && !props.store.error ? true : false} onRefresh = {()=> props.store.loadPhotos()} />}  columnWrapperStyle = {{width: '110%'}}
         />
+        </>
     )
 }))
 

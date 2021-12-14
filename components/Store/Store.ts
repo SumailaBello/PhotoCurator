@@ -1,5 +1,5 @@
-import { BackHandler } from 'react-native';
-import { action, makeObservable, observable } from 'mobx';
+import { BackHandler, Alert } from 'react-native';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import getPhoto from '../Services/GetPhotoService';
 class Store {
     /** index of currently visible image*/
@@ -7,12 +7,14 @@ class Store {
     currentRoute: string = '';
     numColumns: number = 2;
     imageList: Array<any> = [];
+    error: boolean = false;
     constructor() {
         makeObservable(this, {
             index: observable,
             currentRoute: observable,
             numColumns: observable,
             imageList: observable,
+            error: observable,
             setIndex: action,
             setCurrentRoute: action,
             setNumColumns: action,
@@ -36,6 +38,9 @@ class Store {
     // load photos from api
     // next parameter tells us to get the next page from api
     loadPhotos = (next?: boolean)=> {
+        runInAction(()=> {
+            this.error = false;
+        })
         // const num: any = pageNum;
         getPhoto(next).then(res => {
             const images = res.data;
@@ -49,7 +54,11 @@ class Store {
                 this.setList(newList);
             }
         }, error => {
-            console.log(error.response)
+            console.log(error.response);
+            runInAction(()=> {
+                this.error = true;
+            })
+            Alert.alert("Error", "unable to load images")
         })
     }
 

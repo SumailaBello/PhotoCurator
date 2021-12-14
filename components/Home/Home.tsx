@@ -1,12 +1,13 @@
 import React, {useEffect, useRef} from 'react';
 import { View, StatusBar, StyleSheet, Alert} from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import {colors} from '../Styles/Styles';
+import globalStyles, {colors} from '../Styles/Styles';
 import IconButton  from '../Shared/Buttons/IconButton';
 import GridSetting from '../GridSetting/GridSetting';
 import { observer, inject } from "mobx-react";
 import * as ScreenOrientation from 'expo-screen-orientation';
 import ListHandler from '../ListHandler/ListHandler';
+import { DefaultText } from '../Shared/Typography/Typography';
 
 interface Props {
     navigation: any;
@@ -63,7 +64,6 @@ const Home: React.FC<Props> = inject('store')(observer((props: Props) => {
     }, [])
 
     const setListRef = (ref: any)=> {
-        Alert.alert("Set ref")
         flatListRef = ref
     }
     return (
@@ -75,6 +75,12 @@ const Home: React.FC<Props> = inject('store')(observer((props: Props) => {
                 ): (null)}
             </View>
             <ListHandler navigation = {props.navigation} setListRef = {setListRef} />
+            {props.store.error ? (
+                <View style={{alignSelf: 'center', position: 'absolute', top: '50%', alignItems: 'center' }}>
+                    <IconButton style = {globalStyles.iconBtnLg} icon = {<Feather name = "refresh-cw" color={colors.primary} size={25} />} onPress = {()=> props.store.loadPhotos()} backgroundColor = {colors.light}/>
+                    <DefaultText title = "refresh" />
+                </View>
+            ) : (null)}
         </View>
     )
 }))
