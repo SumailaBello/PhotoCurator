@@ -54,7 +54,6 @@ class Store {
                 this.setList(newList);
             }
         }, error => {
-            console.log(error.response);
             runInAction(()=> {
                 this.error = true;
             })
@@ -64,7 +63,6 @@ class Store {
 
     // updates image list
     setList = (newList: Array<any>)=> {
-        console.log(newList)
         this.imageList = newList;
     };
 

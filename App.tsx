@@ -8,10 +8,8 @@ import {Provider} from 'mobx-react';
 
 const store = new Store(); //instantiating state store
 export const App = ()=> {
-  let count: number;
   React.useEffect(()=> {
     const unsubscribe = NetInfo.addEventListener(state => {
-      console.log(count);
           // internet disconnected
       if (!state.isConnected && !state.isInternetReachable) {
         presentNetworkAlert('Internet unavailable!');

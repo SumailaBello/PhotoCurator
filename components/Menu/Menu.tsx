@@ -7,7 +7,6 @@ import { Item } from '../Shared/Menu/MenuItem';
 import { Feather } from '@expo/vector-icons';
 
 const ScreenHeight = Dimensions.get('window').height;
-const platform = Platform.OS;
 let height = 17 / 100 * ScreenHeight;
 
 interface Props {
@@ -26,7 +25,6 @@ export const Menu: React.FC<Props> = inject('store')(observer((props: Props)=> {
         return (
             <View style={styles.container}>
                 <View style = {[styles.menuHeader, {flex: 2}]} >
-                    {/* <Image source = {require('../../assets/img/logo.png')} style={{width: '100%', height: '90%', resizeMode: 'contain'}} /> */}
                     <Feather name = "aperture" size = {50} color={colors.medium} />
                 </View>
                 <View style = {[styles.subContainer, {flex: 10}]}>
