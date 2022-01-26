@@ -1,29 +1,25 @@
 import { BackHandler, Alert } from 'react-native';
 import { action, makeObservable, observable, runInAction } from 'mobx';
-import getPhoto from '../Services/GetPhotoService';
+import getPhoto, {searchPhoto} from '../Services/GetPhotoService';
 class Store {
-    /** index of currently visible image*/
-    index: number = 0;
     currentRoute: string = '';
     numColumns: number = 2;
     imageList: Array<any> = [];
     error: boolean = false;
+    isLoading: boolean = true;
+    isSearching: boolean = false;
     constructor() {
         makeObservable(this, {
-            index: observable,
             currentRoute: observable,
             numColumns: observable,
             imageList: observable,
             error: observable,
-            setIndex: action,
+            isLoading: observable,
+            isSearching: observable,
             setCurrentRoute: action,
             setNumColumns: action,
             setList: action,
         });
-    }
-
-    setIndex = (value: number)=> {
-        this.index = value
     }
 
     // set number of colmns in grid view
@@ -39,10 +35,13 @@ class Store {
     // next parameter tells us to get the next page from api
     loadPhotos = (next?: boolean)=> {
         runInAction(()=> {
-            this.error = false;
+            this.isLoading = true;
         })
         // const num: any = pageNum;
         getPhoto(next).then(res => {
+            runInAction(()=> {
+                this.isLoading = false;
+            })
             const images = res.data;
             let prevList = this.imageList;
             if (next) {
@@ -54,10 +53,38 @@ class Store {
                 this.setList(newList);
             }
         }, error => {
+            console.log(error.response);
             runInAction(()=> {
                 this.error = true;
+                this.isLoading = false;
             })
             Alert.alert("Error", "unable to load images")
+        })
+    }
+
+    // searches photos from api
+    searchPhotos = (query: string)=> {
+        runInAction(()=> {
+            this.isSearching = true;
+        })
+        // const num: any = pageNum;
+        searchPhoto(query).then(res => {
+            const images = res.data.results;
+            console.log('images below');
+            console.log(images);
+            if (images.length > 0) {
+                runInAction(()=> {
+                    this.isSearching = false;
+                    this.setList(images);
+                })
+            }
+        }, error => {
+            console.log(error.response);
+            runInAction(()=> {
+                this.error = true;
+                this.isSearching = false;
+            })
+            Alert.alert("Error", "No search results found");
         })
     }
 

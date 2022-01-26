@@ -6,8 +6,8 @@ import {observer, inject} from 'mobx-react';
 import IconButton  from '../Shared/Buttons/IconButton';
 import Home from '../Home/Home';
 import About from '../About/About';
-import ViewImage from '../ViewImage/ViewImage';
 import { Feather } from '@expo/vector-icons';
+import Saved from '../Saved/Saved';
 
 const Stack = createStackNavigator();
 interface Props {
@@ -15,8 +15,8 @@ interface Props {
 }
 export const NavStack: React.FC<Props> = inject('store')(observer((props: Props)=> {
     const onStateChanged = (event: any)=> {
-        console.log(event)
-        console.log(event.data.state.routes);
+        // console.log(event)
+        // console.log(event.data.state.routes);
         let routesArr = event.data.state.routes;
         let currentRouteName = routesArr[routesArr.length - 1].name;
         // console.log(lastRouteName);
@@ -33,9 +33,14 @@ export const NavStack: React.FC<Props> = inject('store')(observer((props: Props)
                     }}
                 >
                         <Stack.Screen name="Home" component={Home} />
-                        <Stack.Screen name="ViewImage" component={ViewImage} options = {{
-                            header: ()=> null
-                        }} />
+                        <Stack.Screen name="Saved" component={Saved} 
+                        options={({navigation}: any) => ({
+                            headerLeft: ()=> (
+                                <IconButton icon={<Feather name = "chevron-left" size = {17} color={colors.medium} />} style={styles.backBtn} 
+                                onPress={()=> {navigation.goBack()}} />
+                            )
+                        })} 
+                        />
                         <Stack.Screen name="About" component={About} 
                         options={({navigation}: any) => ({
                             headerLeft: ()=> (

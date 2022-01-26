@@ -13,4 +13,4 @@ Run "yarn android" or "yarn ios" to start the application.
 Run "expo build:android" or "expo build:ios" to build apk or ipa for mobile
 
 # APK Link
-https://expo.dev/artifacts/c1e4e0e4-dc9c-449b-99d7-d3c34dbce6bc
+https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40asipita/PhotoCurator-60f3412f31bd476eaa0660c18cf68144-signed.apk

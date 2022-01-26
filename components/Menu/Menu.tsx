@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const Menu: React.FC<Props> = inject('store')(observer((props: Props)=> {
-    console.log(props.navigation);
+    // console.log(props.navigation);
     // handles navigation on sidemenu
     const nav = (route: string)=> {
         props.navigation.navigate(route);
@@ -28,6 +28,11 @@ export const Menu: React.FC<Props> = inject('store')(observer((props: Props)=> {
                     <Feather name = "aperture" size = {50} color={colors.medium} />
                 </View>
                 <View style = {[styles.subContainer, {flex: 10}]}>
+                    <View style={{marginBottom: 25}}>
+                        <Item title = 'Saved' 
+                        icon={<Feather name = "download" color={props.store.currentRoute === 'Saved' ? colors.primary : colors.iconColor} size={25} />} 
+                        color={props.store.currentRoute === 'Saved' ? colors.primary : colors.medium} onPress = {()=> {nav('Saved');}} />
+                    </View>
                     <View style={{marginBottom: 25}}>
                         <Item title = 'About' 
                         icon={<Feather name = "info" color={props.store.currentRoute === 'About' ? colors.primary : colors.iconColor} size={25} />} 

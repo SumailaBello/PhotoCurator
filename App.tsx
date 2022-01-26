@@ -1,3 +1,5 @@
+import {LogBox } from 'react-native';
+LogBox.ignoreLogs(['ScrollViewComponent', 'Failed to get size for image']);
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Alert } from 'react-native';

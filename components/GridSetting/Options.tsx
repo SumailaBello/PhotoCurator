@@ -36,7 +36,7 @@ const Options: React.FC<Props> = inject('store')(observer((props: Props) => {
                         } 
                         style = {{padding: 10, flexDirection: 'row', width: '100%'}}>
                         <View style = {{justifyContent: 'center', marginRight: 5}}>
-                            <Feather name="circle" />
+                            <Feather name={props.store.numColumns === 2 ? "check-circle" : "circle"} color={props.store.numColumns === 2 ? colors.primary : colors.mediumFade} size={25} />
                         </View>
                         <DefaultText title = "X2" />
                     </TouchableOpacity>
@@ -48,7 +48,7 @@ const Options: React.FC<Props> = inject('store')(observer((props: Props) => {
                         } 
                         style = {{padding: 10, flexDirection: 'row', width: '100%'}}>
                         <View style = {{justifyContent: 'center', marginRight: 5}}>
-                            <Feather name="circle" />
+                            <Feather name={props.store.numColumns === 3 ? "check-circle" : "circle"} color={props.store.numColumns === 3 ? colors.primary : colors.mediumFade} size={25} />
                         </View>
                         <DefaultText title = "X3" />
                     </TouchableOpacity>
@@ -60,7 +60,7 @@ const Options: React.FC<Props> = inject('store')(observer((props: Props) => {
                         }  
                         style = {{padding: 10, flexDirection: 'row', width: '100%'}}>
                         <View style = {{justifyContent: 'center', marginRight: 5}}>
-                            <Feather name="circle" />
+                            <Feather name={props.store.numColumns === 4 ? "check-circle" : "circle"} color={props.store.numColumns === 4 ? colors.primary : colors.mediumFade} size={25} />
                         </View>
                         <DefaultText title = "X4" />
                     </TouchableOpacity>

@@ -11,7 +11,7 @@ const ImageItem: React.FC<ItemProps> = (props: ItemProps) => {
             <Image
                 style={{margin: 10, width: 50, height: 50}}
                 source={{
-                uri: props.item.item.urls.thumb,
+                uri: props.item?.item?.urls?.thumb ? props.item.item.urls.thumb : props.item.item.uri,
                 }}
                 defaultSource = {require('../../assets/placeholder.jpg')}
             />

@@ -33,9 +33,9 @@ export class Button extends Component<buttonProps> {
         super(props);
     }
 
-    componentDidMount() {
-        console.log(this.props);
-    }
+    // componentDidMount() {
+    //     console.log(this.props);
+    // }
     render() {
         return (
             <Pressable android_ripple={{color: this.props.rippleColor ? this.props.rippleColor : colors.light}} onPress={this.props.onPress} 
