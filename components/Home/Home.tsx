@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import { View, StatusBar, StyleSheet, Alert, Dimensions, ActivityIndicator} from 'react-native';
+import { View, StatusBar, StyleSheet, Dimensions } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import globalStyles, {colors} from '../Styles/Styles';
 import IconButton  from '../Shared/Buttons/IconButton';

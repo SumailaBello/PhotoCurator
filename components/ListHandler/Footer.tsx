@@ -2,7 +2,7 @@ import { TouchableOpacity, View } from 'react-native';
 import globalStyles, { colors } from '../Styles/Styles';
 import { Feather } from '@expo/vector-icons';
 import React from 'react';
-import { DefaultText, SmallText } from '../Shared/Typography/Typography';
+import { SmallText } from '../Shared/Typography/Typography';
 import * as Linking from 'expo-linking';
 import Button from '../Shared/Buttons/Button';
 
@@ -12,11 +12,9 @@ interface Props {
     photographer_profile: string;
 }
 const Footer = (props: Props)=> {
-    console.log(props.photographer_profile)
+    // console.log(props.photographer_profile)
     const openUrl = (url: string)=> {
         const link = `${url}`;
-        // const link = `${url}&utm_source=Mobile_photo_curator&utm_medium=referral`;
-        alert(link);
         Linking.openURL(link).then(res=>{
             console.log(res);
         }).catch(err=> console.log(err));
