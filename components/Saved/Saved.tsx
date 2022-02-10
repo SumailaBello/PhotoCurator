@@ -5,7 +5,7 @@ import BigList from "react-native-big-list";
 import ImageItem from '../ImageItem/ImageItem';
 import * as FileSystem from 'expo-file-system';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import Footer from '../ListHandler/Footer';
+// import Footer from '../ListHandler/Footer';
 import { colors } from '../Styles/Styles';
 import { Feather } from '@expo/vector-icons';
 import { shareAsync } from 'expo-sharing';
@@ -159,7 +159,7 @@ const Saved: React.FC<Props> = inject('store')(observer((props) => {
             />
             ) : (
                 <View style={{flex: 1, justifyContent: 'center'}}>
-                    <Image source={require('../../assets/error2.png')} style={{height: 50, width: 50, resizeMode: 'contain', alignSelf: 'center'}} />
+                    <Image source={require('../../assets/img_empty.png')} style={{height: 100, width: 100, resizeMode: 'contain', alignSelf: 'center'}} />
                     <DefaultText title="Saved files will be displayed here" />
                 </View>
             )}

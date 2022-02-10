@@ -1,6 +1,6 @@
 import { BackHandler, Alert } from 'react-native';
 import { action, makeObservable, observable, runInAction } from 'mobx';
-import getPhoto, {searchPhoto} from '../Services/GetPhotoService';
+import getPhoto, {searchPhoto, triggerDownload} from '../Services/GetPhotoService';
 class Store {
     currentRoute: string = '';
     numColumns: number = 2;
@@ -70,8 +70,8 @@ class Store {
         // const num: any = pageNum;
         searchPhoto(query).then(res => {
             const images = res.data.results;
-            console.log('images below');
-            console.log(images);
+            // console.log('images below');
+            // console.log(images);
             if (images.length > 0) {
                 runInAction(()=> {
                     this.isSearching = false;
@@ -85,6 +85,16 @@ class Store {
                 this.isSearching = false;
             })
             Alert.alert("Error", "No search results found");
+        })
+    }
+
+    // trigger photo download from api
+    triggerDownload = (id: string)=> {
+        // const num: any = pageNum;
+        triggerDownload(id).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
         })
     }
 

@@ -5,7 +5,7 @@ import { observer, inject } from "mobx-react";
 import {colors} from '../Styles/Styles';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import BigList from "react-native-big-list";
-import { DefaultText, SmallText } from '../Shared/Typography/Typography';
+// import { DefaultText, SmallText } from '../Shared/Typography/Typography';
 import Footer from './Footer';
 import * as FileSystem from 'expo-file-system';
 import { Feather } from '@expo/vector-icons';
@@ -74,6 +74,7 @@ const ListHandler: React.FC<Props> = inject('store')(observer((props: Props) => 
             Alert.alert(error);
             console.log(error);
         })
+        props.store.triggerDownload(image.id);
     }
 
     // render individual image item
@@ -93,7 +94,9 @@ const ListHandler: React.FC<Props> = inject('store')(observer((props: Props) => 
         listRef.current.scrollToIndex({ index: index, animated: true });
     }
 
+    const [searchMode, setSearchMode] = useState(false);
     const search = ()=> {
+        setSearchMode(true);
         Keyboard.dismiss();
         props.store.searchPhotos(query);
         setPlaceholder(`Last search: ${query}`);
@@ -101,8 +104,8 @@ const ListHandler: React.FC<Props> = inject('store')(observer((props: Props) => 
     }
 
     return (
-        <View style={{flex: 1}}>
-            <View style={{padding: 5, flexDirection: 'row'}}>
+        <>
+            <View style={{padding: 5, paddingLeft: 10, flexDirection: 'row', position: 'absolute', zIndex: 1000, backgroundColor: colors.light}}>
                 <TextInput value={query} placeholder={placeholder} style={{borderWidth: 1, borderRadius: 10, borderColor: focus ? colors.success : colors.disabled, padding: 5, flex: 10}} onFocus={()=>setFocus(true)} onBlur={()=>setFocus(false)} onChangeText={(text)=> setQuery(text)} />
                 <IconButton disabled = {props.store.isSearching} icon={props.store.isSearching ? <ActivityIndicator size={20} color={colors.light} /> : <Feather name="search" color={colors.light} size={20} />} backgroundColor={colors.primary} style={{flex: 2, borderRadius: 10, marginLeft: 5}} onPress = {search} />
             </View>
@@ -113,16 +116,22 @@ const ListHandler: React.FC<Props> = inject('store')(observer((props: Props) => 
                 renderItem={renderItem}
                 itemHeight={300}
                 columnWrapperStyle = {{overflow: 'hidden'}}
-                onEndReached = {()=>{
-                    // setTimeout(() => {
-                        props.store.loadPhotos(true);
-                    // }, 500)
-                }
+                onEndReached = {
+                    ()=>{
+                        searchMode ? null : props.store.loadPhotos(true);
+                    }
                 }
                 keyExtractor = {(item: any) => item.id}
-                refreshControl = {<RefreshControl colors = {[colors.primary, colors.medium]} refreshing = {props.store.imageList.length === 0 && !props.store.error ? true : false} onRefresh = {()=> props.store.loadPhotos()} />}
+                refreshControl = {<RefreshControl colors = {[colors.primary, colors.medium]} refreshing = {props.store.imageList.length === 0 && !props.store.error ? true : false} 
+                onRefresh = {
+                    ()=> {
+                        setSearchMode(false);
+                        setPlaceholder(`Search`);
+                        props.store.loadPhotos();
+                    }} />
+                }
             />
-            {/* view image modal */}
+            
             <Modal style={{backgroundColor: 'black'}} animationType="slide" presentationStyle = "fullScreen" hardwareAccelerated visible={imageOpen} onRequestClose={closeImageViewer} >
                 <View style = {{backgroundColor: 'black', flexDirection: 'row', justifyContent: 'flex-end'}}>
                     {downloading ? (
@@ -142,38 +151,7 @@ const ListHandler: React.FC<Props> = inject('store')(observer((props: Props) => 
                         <Footer name={images[index].name} likes={images[index].likes} photographer_profile={images[index].photographer_profile} />
                     ): (null)}  
             </Modal>
-        {/* <FlatList
-            ref={ref => flatListRef = ref}
-            data = {props.store.imageList.slice()}
-            renderItem={_renderItem}
-            // initialNumToRender={this.state.data.length / 5}
-            onEndReached={(e) => {
-                // Append data
-            }}
-            onScroll={(e) => {
-                if (e.nativeEvent.contentOffset.y == 0) {
-                // Prepend data
-                }
-            }}
-            onScrollToIndexFailed={(error) => {
-                // flatListRef.scrollToOffset({ offset:  error.index, animated: true });
-                flatListRef.scrollToOffset({ offset: error.averageItemLength * error.index, animated: true });
-                setTimeout(() => {
-                if (props.store.imageList.length !== 0 && flatListRef !== null) {
-                    flatListRef.scrollToIndex({ index: error.index, animated: true });
-                }
-                }, 100);
-            }}
-            onScrollEndDrag = {()=>{ setTimeout(() => {
-                props.store.loadPhotos(true);
-            }, 500)}} 
-                key={props.store.numColumns}
-                keyExtractor={(item: any) => item.id} showsVerticalScrollIndicator={false}
-                numColumns = {props.store.numColumns} 
-                refreshControl = {
-                    <RefreshControl colors = {[colors.primary, colors.medium]} refreshing = {props.store.imageList.length === 0 && !props.store.error ? true : false} onRefresh = {()=> props.store.loadPhotos()} />}  columnWrapperStyle = {{width: '110%'}}
-        /> */}
-        </View>
+        </>
     )
 }))
 

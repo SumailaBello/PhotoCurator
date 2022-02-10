@@ -29,7 +29,6 @@ const Home: React.FC<Props> = inject('store')(observer((props: Props) => {
                 setTimeout(() => {
                     setHeaderBtn(); 
                 }, 100);
-                
             } 
             else if (event.orientationInfo.orientation < 3 ) {
                 // setHeaderBtn();
